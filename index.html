@@ -1,314 +1,399 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>Meu portifólio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Portfólio - Victor Gabriel</title>
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #212529;
+      --card-bg: #f8f9fa;
+      --modal-bg: #ffffff;
+      --btn-bg: #0d6efd;
+      --btn-text: #ffffff;
+      --shadow-color: rgba(0, 0, 0, 0.2);
+    }
+
+    body.dark-mode {
+      --bg-color: #0e0e11;
+      --text-color: #f1f1f1;
+      --card-bg: #1a1a1f;
+      --modal-bg: #1f1f25;
+      --btn-bg: #2563eb;
+      --btn-text: #ffffff;
+      --shadow-color: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+    }
+
+    header, footer {
+      color: var(--text-color);
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      box-shadow: 0 5px 10px var(--shadow-color);
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 15px 25px var(--shadow-color);
+    }
+
+    .card-img-top {
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .card:hover .card-img-top {
+      transform: scale(1.1);
+      filter: brightness(1.1);
+    }
+
+    .modal-content {
+      background-color: var(--modal-bg);
+      color: var(--text-color);
+      border-radius: 15px;
+      overflow: hidden;
+      animation: aparecer 0.4s ease;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-body img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      transform: scale(0.9);
+      opacity: 0;
+      animation: zoomIn 0.6s ease forwards;
+      box-shadow: 0 10px 20px var(--shadow-color);
+    }
+
+    @keyframes zoomIn {
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .btn-primary {
+      background-color: var(--btn-bg);
+      border-color: var(--btn-bg);
+      color: var(--btn-text);
+      transition: filter 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.1);
+      transform: scale(1.05);
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.15);
+    }
+  </style>
 </head>
 
 <body>
-   <header class="container text-center">
-    <div class="dark-mode">
-      <button id="dark-mode-toggle" class="dark-mode-btn">Modo escuro</button> 
-    </div>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema">🌙</button>
+
+  <header class="container text-center my-5">
     <img src="avatar.png" alt="avatar" class="rounded-circle" width="150" height="150">
-    <p class="lead">Eu sou Nicolas</p>
-    <h1>Eu sou aluno de programação</h1>
-    <p>(Tenho 15 anos e estou estudando programação)</p>
-    <p>Minhas Habilidades</p>
+    <p class="lead mt-3">Eu sou Aluno Victor Gabriel</p>
+    <h1>Aluno de Programação</h1>
+    <p>Sou estudante do Colégio Júlio Mesquita, faço Desenvolvimento de Sistemas, gosto de esportes e trabalho na Kalunga do Estação como menor aprendiz. Após o trabalho costumo frequentar a academia e aos sábados faço curso de TI.</p>
+    <h5 class="mt-4">Minhas Habilidades</h5>
     <div>
-        <p class="badge bg-secondary">HTML</p>
-        <p class="badge bg-secondary">CSS</p>
-        <p class="badge bg-secondary">JavaScript</p>
+      <span class="badge bg-secondary">HTML</span>
+      <span class="badge bg-secondary">CSS</span>
+      <span class="badge bg-secondary">JavaScript</span>
     </div>
-    </header>
-   
-   <main class="container">
-        <h2>Meus projetos</h2>
-        <div class="row">
+  </header>
 
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                        <img src="img/projeto1.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Alura Flix</h5>
-                            <p class="card-text">Tenha acesso ao melhor.</p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal1">Veja o projeto</button>
-                        </div>
-                        </div>
-            </div>
+  <main class="container">
+    <h2 class="text-center mb-4">Meus Projetos</h2>
+    <div class="row g-4">
 
-
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                        <img src="img/projeto2.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Jogo do número</h5>
-                            <p class="card-text">Jogo de adivinhação de números.</p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal2">Veja o projeto</button>
-                        </div>
-                        </div>
-            </div>
-
-
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                        <img src="img/projeto3.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Barbearia Alura</h5>
-                            <p class="card-text">Melhores preços no corte.</p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal3">Veja o projeto</button>
-                        </div>
-                        </div>
-            </div>
-
-
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                        <img src="img/projeto4.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Jogo do Mario</h5>
-                            <p class="card-text">Jogo do Super Mario.</p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal4">Veja o projeto</button>
-                        </div>
-                        </div>
-            </div>
-
-
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                        <img src="img/projeto5.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Quiz Interativo</h5>
-                            <p class="card-text">Quiz interativo  para responder.</p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal5">Veja o projeto</button>
-                        </div>
-                        </div>
-            </div>
-
-
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                        <img src="img/projeto6.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Site escola</h5>
-                            <p class="card-text">Catalogo da nossa escola.</p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal6">Veja o projeto</button>
-                        </div>
-                        </div>
-            </div>
-
-
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                        <img src="img/projeto7.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Projeto individual</h5>
-                            <p class="card-text">Site sobre yogurte.</p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal7">Veja o projeto</button>
-                        </div>
-                        </div>
-            </div>
-
-
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                        <img src="img/projeto8.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Flashcard</h5>
-                            <p class="card-text">Cards de perguntas e respostas.</p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal8">Veja o projeto</button>
-                        </div>
-                        </div>
-            </div>
-            
+      <!-- PROJETOS -->
+      <div class="col-md-3">
+        <div class="card h-100">
+          <img src="img/SitePessoal.png" class="card-img-top" alt="Site Pessoal">
+          <div class="card-body">
+            <h5 class="card-title">Site Pessoal</h5>
+            <p class="card-text">Um site para apresentar quem sou, minhas habilidades e contatos.</p>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSitePessoal">Ver projeto</button>
+          </div>
         </div>
-   </main>
+      </div>
 
-    
-   <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Título do projeto</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Descrição do meu projeto</p>
-        <img src="..." alt="projeto 1">
-      </div>
-      <div class="modal-footer">
-        <a href="#">Veja o projeto</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-   <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Título do projeto</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Descrição do meu projeto</p>
-        <img src="projeto1.png" alt="projeto 1">
-      </div>
-      <div class="modal-footer">
-        <a href="https://github.com/nicolas2b/FLASH_CARD-2B.git">Veja o projeto</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-   <div class="modal fade" id="modal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Título do projeto</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Descrição do meu projeto</p>
-        <img src="projeto1.png" alt="projeto 1">
-      </div>
-      <div class="modal-footer">
-        <a href="https://github.com/nicolas2b/danonao-grosso.git">Veja o projeto</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-   <div class="modal fade" id="modal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Título do projeto</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Descrição do meu projeto</p>
-        <img src="projeto1.png" alt="projeto 1">
-      </div>
-      <div class="modal-footer">
-        <a href="https://github.com/nicolas2b/quiz-interativo.git">Veja o projeto</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-   <div class="modal fade" id="modal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Título do projeto</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Descrição do meu projeto</p>
-        <img src="projeto1.png" alt="projeto 1">
-      </div>
-      <div class="modal-footer">
-        <a href="https://github.com/nicolas2b/jogo_mario.git">Veja o projeto</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-   <div class="modal fade" id="modal6" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Título do projeto</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Descrição do meu projeto</p>
-        <img src="projeto1.png" alt="projeto 1">
-      </div>
-      <div class="modal-footer">
-        <a href="https://github.com/nicolas2b/alura_flix.git">Veja o projeto</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-   <div class="modal fade" id="modal7" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Título do projeto</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Descrição do meu projeto</p>
-        <img src="projeto1.png" alt="projeto 1">
-      </div>
-      <div class="modal-footer">
-        <a href="https://github.com/nicolas2b/site-escola.git">Veja o projeto</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-   <div class="modal fade" id="modal8" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Título do projeto</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Descrição do meu projeto</p>
-        <img src="projeto1.png" alt="projeto 1">
-      </div>
-      <div class="modal-footer">
-        <a href="https://github.com/nicolas2b/barbearia_alura_part2.git">Veja o projeto</a>
-      </div>
-    </div>
-  </div>
-</div>
-    
-    
-   <footer class="container py-5">
-        <h2>Entre em contato</h2>
-        <div>
-            <a href="https://github.com/nicolas2b"><https://github.com/nicolas2b/meu_portifolio.git>GitHub</a>
+      <div class="col-md-3">
+        <div class="card h-100">
+          <img src="img/aluraFlix.png" class="card-img-top" alt="AluraFlix">
+          <div class="card-body">
+            <h5 class="card-title">AluraFlix</h5>
+            <p class="card-text">Um projeto para adicionar e listar vídeos favoritos.</p>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAluraFlix">Ver projeto</button>
+          </div>
         </div>
-        <p class="my-5 text-center">Produzido por &copy;Nicolas - 2B</p>
-   </footer>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-   <script>
-    const toggleButton = document.getElementById('dark-mode-toggle');
-    const body = document.body;
+      </div>
 
-    toggleButton.addEventListener('click', function() {
-      body.classList.toggle('dark-mode');
+      <div class="col-md-3">
+        <div class="card h-100">
+          <img src="img/barbearia.png" class="card-img-top" alt="Barbearia">
+          <div class="card-body">
+            <h5 class="card-title">Barbearia</h5>
+            <p class="card-text">Site de uma barbearia moderna, com serviços e contato.</p>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalBarbearia">Ver projeto</button>
+          </div>
+        </div>
+      </div>
 
-      if(body.classList.contains('dark-mode')) {
-        toggleButton.textContent = 'Modo claro';
-      }else {
-        toggleButton.textContent = 'Modo escuro';
-      }
-    });
-   </script>
-  </body>
+      <div class="col-md-3">
+        <div class="card h-100">
+          <img src="img/flashCard.png" class="card-img-top" alt="FlashCard">
+          <div class="card-body">
+            <h5 class="card-title">FlashCard</h5>
+            <p class="card-text">Aplicação para revisar conteúdos através de flashcards.</p>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFlashCard">Ver projeto</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card h-100">
+          <img src="img/marioGame.png" class="card-img-top" alt="Mario Game">
+          <div class="card-body">
+            <h5 class="card-title">Mario Game</h5>
+            <p class="card-text">Um jogo divertido inspirado no clássico Mario.</p>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMarioGame">Ver projeto</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card h-100">
+          <img src="img/quizInterativo.png" class="card-img-top" alt="Quiz Interativo">
+          <div class="card-body">
+            <h5 class="card-title">Quiz Interativo</h5>
+            <p class="card-text">Um quiz de perguntas e respostas feito com JavaScript.</p>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalQuiz">Ver projeto</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card h-100">
+          <img src="img/siteEscola.png" class="card-img-top" alt="Site da Escola">
+          <div class="card-body">
+            <h5 class="card-title">Site da Escola</h5>
+            <p class="card-text">Página institucional da escola, com informações e links.</p>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEscola">Ver projeto</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card h-100">
+          <img src="img/JogoDoNumero.png" class="card-img-top" alt="Jogo do Número">
+          <div class="card-body">
+            <h5 class="card-title">Jogo do Número</h5>
+            <p class="card-text">Um jogo onde o usuário tenta adivinhar o número secreto.</p>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNumero">Ver projeto</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========== MODAIS GRANDES ========== -->
+  <div class="modal fade" id="modalSitePessoal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Site Pessoal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="img/SitePessoal.png" alt="Site Pessoal">
+          <p>Meu primeiro projeto pessoal. Um site feito em HTML e CSS para apresentar quem sou, minhas habilidades e formas de contato.</p>
+          <a href="https://victor2b2025.github.io/basquete" target="_blank" class="btn btn-primary mt-3">Ver no GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalAluraFlix" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">AluraFlix</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="img/aluraFlix.png" alt="AluraFlix">
+          <p>Projeto inspirado na plataforma AluraFlix, criado com HTML, CSS e JavaScript para adicionar e listar vídeos favoritos.</p>
+          <a href="https://victor2b2025.github.io/alura_flix_VictorG" target="_blank" class="btn btn-primary mt-3">Ver no GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalBarbearia" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Barbearia</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="img/barbearia.png" alt="Barbearia">
+          <p>Um site moderno para barbearias, com seções de serviços, galeria e formulário de contato.</p>
+          <a href="https://victor2b2025.github.io/Barbearia_Alura_P2_2b_2025" target="_blank" class="btn btn-primary mt-3">Ver no GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalFlashCard" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">FlashCard</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="img/flashCard.png" alt="FlashCard">
+          <p>Aplicação interativa de estudos que utiliza cartões de perguntas e respostas para revisão de conteúdos.</p>
+          <a href="https://victor2b2025.github.io/flashcard-2b-victor" target="_blank" class="btn btn-primary mt-3">Ver no GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalMarioGame" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Mario Game</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="img/marioGame.png" alt="Mario Game">
+          <p>Jogo inspirado em Mario, com saltos, obstáculos e pontuação feita em JavaScript.</p>
+          <a href="https://github.com/nicolas2b/jogo-mario-2b-2025-pt2.git" target="_blank" class="btn btn-primary mt-3">Ver no GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalQuiz" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Quiz Interativo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="img/quizInterativo.png" alt="Quiz Interativo">
+          <p>Quiz de múltipla escolha com feedback imediato, desenvolvido com HTML, CSS e JavaScript.</p>
+          <a href="https://victor2b2025.github.io/quiz-interativo" target="_blank" class="btn btn-primary mt-3">Ver no GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalEscola" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Site da Escola</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="img/siteEscola.png" alt="Site da Escola">
+          <p>Página institucional com informações sobre a escola, cursos e links úteis.</p>
+          <a href="https://victor2b2025.github.io/site-escola-2B-20251" target="_blank" class="btn btn-primary mt-3">Ver no GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalNumero" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Jogo do Número</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img src="img/JogoDoNumero.png" alt="Jogo do Número">
+          <p>Um jogo divertido em que o jogador tenta adivinhar o número secreto gerado aleatoriamente.</p>
+          <a href="https://victor2b2025.github.io/jogo-do-numero-2b-2025" target="_blank" class="btn btn-primary mt-3">Ver no GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="container py-5 text-center">
+    <h2>Entre em contato</h2>
+    <a href="https://github.com/professor-weslly" target="_blank" class="btn btn-dark mt-2">GitHub</a>
+    <p class="mt-4">Produzido por &copy; Victor Gabriel - 2B</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
+
+  // Checa se o modo escuro estava ativo antes
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    body.classList.add('dark-mode');
+    themeToggle.textContent = '🔆'; // Sol = modo claro disponível
+  } else {
+    themeToggle.textContent = '🌙'; // Lua = modo escuro disponível
+  }
+
+  // Alterna o tema ao clicar
+  themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    
+    // Atualiza o texto do botão e salva o estado
+    if (body.classList.contains('dark-mode')) {
+      localStorage.setItem('theme', 'dark');
+      themeToggle.textContent = '🔆';
+    } else {
+      localStorage.setItem('theme', 'light');
+      themeToggle.textContent = '🌙';
+    }
+  });
+</script>
+</body>
 </html>
-
